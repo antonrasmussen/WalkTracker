@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WalkTracker</string>
+    <string name="google_maps_key">YOUR_GOOGLE_MAPS_API_KEY_HERE</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_calibration">Calibration</string>
+    <string name="nav_settings">Settings</string>
+    
+    <!-- Tracking -->
+    <string name="start_walk">Start Walk</string>
+    <string name="pause_walk">Pause</string>
+    <string name="resume_walk">Resume</string>
+    <string name="stop_walk">Stop</string>
+    <string name="tracking_active">Tracking Active</string>
+    <string name="tracking_paused">Tracking Paused</string>
+    
+    <!-- Stats -->
+    <string name="distance">Distance</string>
+    <string name="steps">Steps</string>
+    <string name="duration">Duration</string>
+    <string name="pace">Pace</string>
+    <string name="speed">Speed</string>
+    
+    <!-- History -->
+    <string name="walk_history">Walk History</string>
+    <string name="no_walks_recorded">No walks recorded yet</string>
+    <string name="start_first_walk">Start your first walk to see it here!</string>
+    <string name="delete_walk">Delete Walk</string>
+    <string name="delete_walk_confirm">Are you sure you want to delete this walk? This action cannot be undone.</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- Calibration -->
+    <string name="calibrate_step_length">Calibrate Step Length</string>
+    <string name="how_to_calibrate">How to Calibrate</string>
+    <string name="calibration_instructions">1. Find a straight path of known length\n2. Walk the distance at your normal pace\n3. Count your steps carefully\n4. Enter the distance and step count below</string>
+    <string name="current_step_length">Current Step Length</string>
+    <string name="known_distance">Known Distance</string>
+    <string name="steps_counted">Steps Counted</string>
+    <string name="calculate_step_length">Calculate Step Length</string>
+    <string name="calculated_step_length">Calculated Step Length</string>
+    <string name="save">Save</string>
+    <string name="calibration_tips">Tips for Accurate Calibration</string>
+    <string name="calibration_tips_text">• Use a track, football field, or measured path\n• Walk at your normal, comfortable pace\n• Count every step, including partial steps\n• Repeat the measurement 2-3 times and average</string>
+    
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="step_length_settings">Step Length</string>
+    <string name="step_length_description">Your average step length is used to estimate steps from distance when the step sensor is not available.</string>
+    <string name="update_step_length">Update Step Length</string>
+    <string name="units_settings">Units</string>
+    <string name="units_description">Choose between metric (km, m) or imperial (miles, feet) units.</string>
+    <string name="metric">Metric</string>
+    <string name="imperial">Imperial</string>
+    <string name="sensor_settings">Step Sensor</string>
+    <string name="sensor_description">Use the device\'s step counter sensor when available for more accurate step counting.</string>
+    <string name="use_step_sensor">Use Step Sensor</string>
+    <string name="maps_settings">Maps</string>
+    <string name="maps_description">Enable Google Maps to view your walking paths. Requires internet connection.</string>
+    <string name="enable_maps">Enable Maps</string>
+    <string name="app_info">App Information</string>
+    <string name="app_info_text">WalkTracker v1.0\nA simple GPS-based walking tracker\nWorks offline, no data collection</string>
+    
+    <!-- Map -->
+    <string name="walk_path">Walk Path</string>
+    <string name="current_walk">Current Walk</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="no_path_data">No path data available for this walk</string>
+    <string name="start_walking_map">Start walking to see your path on the map</string>
+    
+    <!-- Permissions -->
+    <string name="location_permission_required">Location permission is required to track your walks</string>
+    <string name="location_permission_denied">Location permission denied. Cannot track walks without location access.</string>
+    
+    <!-- Notifications -->
+    <string name="notification_channel_name">Location Tracking</string>
+    <string name="notification_channel_description">Shows when location tracking is active</string>
+    <string name="notification_title">WalkTracker - Tracking Active</string>
+    <string name="notification_text">GPS location tracking is running</string>
+    
+    <!-- Errors -->
+    <string name="error_start_session">Failed to start session</string>
+    <string name="error_stop_session">Failed to stop session</string>
+    <string name="error_delete_session">Failed to delete session</string>
+    <string name="error_invalid_step_length">Please enter a valid step length</string>
+    
+    <!-- Units -->
+    <string name="meters">m</string>
+    <string name="kilometers">km</string>
+    <string name="feet">ft</string>
+    <string name="miles">mi</string>
+    <string name="centimeters">cm</string>
+    <string name="inches">in</string>
+</resources>
