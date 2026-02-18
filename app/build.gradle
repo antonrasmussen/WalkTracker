@@ -5,12 +5,19 @@ plugins {
     id 'kotlin-parcelize'
 }
 
+// Load secrets from gitignored file (copy secrets.properties.example → secrets.properties)
+def secretsFile = rootProject.file("secrets.properties")
+def secrets = new Properties()
+if (secretsFile.exists()) {
+    secrets.load(new FileInputStream(secretsFile))
+}
+
 android {
-    namespace 'com.example.walktracker'
+    namespace 'com.carefuldata.walktracker'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.walktracker"
+        applicationId "com.carefuldata.walktracker"
         minSdk 26
         targetSdk 34
         versionCode 1
@@ -20,6 +27,10 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        // Fitbit OAuth (from secrets.properties; empty if file missing)
+        buildConfigField "String", "FITBIT_CLIENT_ID", "\"${secrets.getProperty('fitbit.clientId', '')}\""
+        buildConfigField "String", "FITBIT_CLIENT_SECRET", "\"${secrets.getProperty('fitbit.clientSecret', '')}\""
     }
 
     buildTypes {
@@ -37,6 +48,7 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.5.4'

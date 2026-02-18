@@ -58,9 +58,21 @@ To enable map functionality:
 ```
 
 ### 3. Build and Run
-1. Connect an Android device or start an emulator
-2. Click "Run" in Android Studio
-3. Grant location permissions when prompted
+
+**Option A – Android Studio (recommended)**  
+1. Open the project in Android Studio.  
+2. Connect an Android device or start an emulator.  
+3. Click **Run** (or **Build → Make Project**).  
+4. Grant location permissions when prompted.
+
+**Option B – Command line**  
+Ensure Java 17 is installed and set `JAVA_HOME`, then:
+
+```bash
+./gradlew assembleDebug
+```
+
+The first run will download the Gradle distribution. Output APK: `app/build/outputs/apk/debug/app-debug.apk`.
 
 ### 4. Testing on Pixel Device
 For best GPS testing experience:
