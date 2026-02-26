@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.carefuldata.walktracker.data.WalkSession
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.maps.android.compose.*
 
 /**
@@ -45,11 +46,9 @@ fun MapScreen(
     // Calculate camera position based on path points
     val cameraPosition = remember(pathPoints) {
         if (pathPoints.isNotEmpty()) {
-            val bounds = pathPoints.fold(
-                LatLngBounds.Builder()
-            ) { builder, point ->
-                builder.include(point)
-            }.build()
+            val builder = LatLngBounds.Builder()
+            pathPoints.forEach { builder.include(it) }
+            val bounds = builder.build()
             
             CameraPosition.fromLatLngZoom(bounds.center, 15f)
         } else {
