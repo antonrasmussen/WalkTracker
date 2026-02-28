@@ -1,16 +1,24 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.plugin.compose'
+    id 'com.google.devtools.ksp'
     id 'kotlin-parcelize'
 }
 
+// Load secrets from gitignored file (copy secrets.properties.example → secrets.properties)
+def secretsFile = rootProject.file("secrets.properties")
+def secrets = new Properties()
+if (secretsFile.exists()) {
+    secrets.load(new FileInputStream(secretsFile))
+}
+
 android {
-    namespace 'com.example.walktracker'
+    namespace 'com.carefuldata.walktracker'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.walktracker"
+        applicationId "com.carefuldata.walktracker"
         minSdk 26
         targetSdk 34
         versionCode 1
@@ -20,6 +28,10 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        // Fitbit OAuth (from secrets.properties; empty if file missing)
+        buildConfigField "String", "FITBIT_CLIENT_ID", "\"${secrets.getProperty('fitbit.clientId', '')}\""
+        buildConfigField "String", "FITBIT_CLIENT_SECRET", "\"${secrets.getProperty('fitbit.clientSecret', '')}\""
     }
 
     buildTypes {
@@ -29,17 +41,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.4'
+        buildConfig true
     }
     packaging {
         resources {
@@ -57,6 +67,9 @@ dependencies {
     implementation 'androidx.compose.ui:ui-graphics'
     implementation 'androidx.compose.ui:ui-tooling-preview'
     implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.compose.material:material-icons-extended'
+    // Material XML theme (Theme.Material3.DayNight) for manifest/activity theme
+    implementation 'com.google.android.material:material:1.11.0'
     
     // ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0'
@@ -66,9 +79,10 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     
     // Room
-    implementation 'androidx.room:room-runtime:2.6.1'
-    implementation 'androidx.room:room-ktx:2.6.1'
-    kapt 'androidx.room:room-compiler:2.6.1'
+    def room_version = "2.7.0-alpha11"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    ksp "androidx.room:room-compiler:$room_version"
     
     // DataStore
     implementation 'androidx.datastore:datastore-preferences:1.0.0'

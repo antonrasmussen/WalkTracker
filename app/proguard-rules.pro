@@ -21,7 +21,7 @@
 #-renamesourcefileattribute SourceFile
 
 # Keep Room entities
--keep class com.example.walktracker.data.** { *; }
+-keep class com.carefuldata.walktracker.data.** { *; }
 
 # Keep Google Maps classes
 -keep class com.google.android.gms.maps.** { *; }
