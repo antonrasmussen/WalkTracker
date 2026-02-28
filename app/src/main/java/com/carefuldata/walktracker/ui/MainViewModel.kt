@@ -15,7 +15,7 @@ import com.carefuldata.walktracker.util.StepCounter
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.Preferences
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 
 private val Context.userPrefsDataStore: DataStore<Preferences> by preferencesDataStore(name = "user_prefs")
@@ -232,14 +232,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun updateUserPrefs(stepLength: Double? = null, units: String? = null, useStepSensor: Boolean? = null, enableMaps: Boolean? = null) {
         viewModelScope.launch {
-            val keys = UserPrefs.getKeys()
-            
-            dataStore.edit { preferences ->
-                stepLength?.let { preferences[keys["stepLengthMeters"]!!] = it }
-                units?.let { preferences[keys["units"]!!] = it }
-                useStepSensor?.let { preferences[keys["useStepSensor"]!!] = it }
-                enableMaps?.let { preferences[keys["enableMaps"]!!] = it }
-            }
+            UserPrefs.update(dataStore, stepLength, units, useStepSensor, enableMaps)
         }
     }
     

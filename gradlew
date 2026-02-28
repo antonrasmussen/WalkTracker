@@ -64,6 +64,7 @@ esac
 # Wrapper plugin jar + shared jar (both needed for Gradle 8.2)
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 [ -f "$APP_HOME/gradle/wrapper/gradle-wrapper-shared-8.2.jar" ] && CLASSPATH=$CLASSPATH:$APP_HOME/gradle/wrapper/gradle-wrapper-shared-8.2.jar
+[ -f "$APP_HOME/gradle/wrapper/gradle-cli.jar" ] && CLASSPATH=$CLASSPATH:$APP_HOME/gradle/wrapper/gradle-cli.jar
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ]; then

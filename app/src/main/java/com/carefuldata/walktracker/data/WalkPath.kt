@@ -3,6 +3,7 @@ package com.carefuldata.walktracker.data
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
+import androidx.room.PrimaryKey
 
 /**
  * Represents a path segment for a walking session.
@@ -27,6 +28,7 @@ import androidx.room.Index
     indices = [Index(value = ["sessionId", "sequenceOrder"])]
 )
 data class WalkPath(
+    @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val sessionId: Long,
     val encodedPolyline: String,

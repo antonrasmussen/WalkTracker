@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.doublePreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -50,14 +51,22 @@ data class UserPrefs(
         }
         
         /**
-         * Get preference keys for updating values.
+         * Update DataStore with new preference values (only non-null params are written).
          */
-        fun getKeys() = mapOf(
-            "stepLengthMeters" to STEP_LENGTH_KEY,
-            "units" to UNITS_KEY,
-            "useStepSensor" to USE_STEP_SENSOR_KEY,
-            "enableMaps" to ENABLE_MAPS_KEY
-        )
+        suspend fun update(
+            dataStore: DataStore<Preferences>,
+            stepLengthMeters: Double? = null,
+            units: String? = null,
+            useStepSensor: Boolean? = null,
+            enableMaps: Boolean? = null
+        ) {
+            dataStore.edit { prefs ->
+                stepLengthMeters?.let { prefs[STEP_LENGTH_KEY] = it }
+                units?.let { prefs[UNITS_KEY] = it }
+                useStepSensor?.let { prefs[USE_STEP_SENSOR_KEY] = it }
+                enableMaps?.let { prefs[ENABLE_MAPS_KEY] = it }
+            }
+        }
     }
     
     /**
